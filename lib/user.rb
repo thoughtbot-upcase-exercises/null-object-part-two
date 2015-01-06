@@ -6,8 +6,10 @@ class User
   def subscription
     if free_trial?
       TrialSubscription.new
+    elsif @subscription.nil?
+      NoSubscription.new
     else
-      @subscription || NoSubscription.new
+      @subscription
     end
   end
 
