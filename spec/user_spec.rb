@@ -81,13 +81,13 @@ describe User do
       subscription = double('subscription', plan_name: plan_name)
       user = build_user(subscription: subscription, free_trial: true)
 
-      expect(user.plan_name).to eq(User::FREE_TRIAL)
+      expect(user.plan_name).to eq('Free Trial')
     end
 
     it 'returns "No Plan" after the free trial without a subscription' do
       user = build_user(subscription: nil, free_trial: false)
 
-      expect(user.plan_name).to eq(User::NO_PLAN)
+      expect(user.plan_name).to eq('No Plan')
     end
   end
 
