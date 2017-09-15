@@ -5,7 +5,7 @@ describe User do
     it 'charges its subscription to its credit card' do
       credit_card = double('credit_card')
       subscription = double('subscription')
-      subscription.stub(:charge)
+      allow(subscription).to receive(:charge)
       user = build_user(subscription: subscription, credit_card: credit_card)
 
       user.charge
@@ -33,13 +33,13 @@ describe User do
     it 'returns true during the free trial period' do
       user = build_user(subscription: nil, free_trial: true)
 
-      expect(user.has_mentoring?).to be_true
+      expect(user.has_mentoring?).to be_truthy
     end
 
     it 'returns false without a subscription after the free trial' do
       user = build_user(subscription: nil, free_trial: false)
 
-      expect(user.has_mentoring?).to be_false
+      expect(user.has_mentoring?).to be_falsey
     end
   end
 

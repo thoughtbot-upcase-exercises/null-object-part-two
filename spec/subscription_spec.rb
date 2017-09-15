@@ -33,7 +33,7 @@ describe Subscription do
     it 'charges the credit card for its price' do
       price = double('price')
       credit_card = double('credit_card')
-      credit_card.stub(:charge)
+      allow(credit_card).to receive(:charge)
       subscription = Subscription.new(price: price)
 
       subscription.charge(credit_card)
